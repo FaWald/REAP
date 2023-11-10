@@ -16,6 +16,8 @@ public interface MealRepository extends PagingAndSortingRepository<Meal, Long>, 
 
     @Query("select m from Meal m where m.id = :id")
     List<Menu> findById(@Param("id") Integer id);
+    @Query("Select m from Meal m where m.name like :name")
+    List<Meal> findByName(@Param("name") String name);
     @Query("Select m from Meal m where m.description like :description")
     List<Meal> findByDescription(@Param("description") String description);
     @Query("Select m from Meal m where m.menu = :menu")
