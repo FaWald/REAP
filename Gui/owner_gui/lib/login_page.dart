@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
+import 'waiter_gui.dart';
 import 'restaurant_gui_home.dart';
 
 void main() {

@@ -24,7 +24,7 @@ if you want to use one of the functions defined in the class, you can call them 
 
 The Application file is the start of the program and with WebMvcConfigurer sets the CORS communications for localhost:8080
 
-### Creating a restaurant
+Creating a restaurant
 
 Send POST HTTP request to endpoint http://localhost:8080/restaurants
 
@@ -47,7 +47,7 @@ Send POST HTTP request to endpoint http://localhost:8080/restaurants
 
 
 
-### Creating a reservation
+Creating a reservation
 
 Send GET HTTP request to endpoint http://localhost:8080/restaurants/search/findByName?name=PetarKornDog
 
@@ -97,47 +97,5 @@ Send POST HTTP request to endpoint http://localhost:8080/reservations
       phoneNumber : "+4369910677504",
       emailAddress : "customer1@gmail.com",
       restaurant : "http://localhost:8080/restaurants/1"
-    }
-}
-
-### Creating a menu
-
-besides the table values for the menu you will need the self href of the restaurant
-
-Send GET HTTP request to endpoint http://localhost:8080/restaurants/search/findByName?name=RestaurantName
-you can get that from the response of the get call under data._embedded.restaurant[i]._links.self.href
-
-Send POST HTTP request to endpoint http://localhost:8080/menus
-
-{
-    headers: {
-        "Content-Type": "application/json"
-    }
-    method: "POST",
-    body: {
-      name : "Petars Pizza Menu",
-      description: "Der Pizza Menu von PetarsKornDogs",
-      restaurant: "http://localhost:8080/restaurants/1"
-    }
-}
-
-### Creating a meal
-
-besides the table values for the meal you will need the self href of the menus
-
-Send GET HTTP request to endpoint http://localhost:8080/menus/search/findByName?name=MenuName
-you can get that from the response of the get call under data._embedded.menus[i]._links.self.href
-
-Send POST HTTP request to endpoint http://localhost:8080/meals
-
-{
-    headers: {
-        "Content-Type": "application/json"
-    }
-    method: "POST",
-    body: {
-      name : "Petars Salami auf Pizza",
-      description: "Salami Pizza sehr sehr Lecker",
-      menus: "http://localhost:8080/menus/1"
     }
 }

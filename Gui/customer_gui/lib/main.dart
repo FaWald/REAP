@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:owner_gui/screens/homeScreen.dart';
+import 'package:owner_gui/screens/homeScrenn.dart';
 import 'styles/app_theme.dart';
 
 void main() => runApp(const MyApp());

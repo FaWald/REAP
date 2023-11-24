@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../order.dart';
+import '../meal.dart';
 import '../styles/dimensions.dart';
 import '../styles/app_theme.dart';
 import 'orderManagementScreen.dart';
@@ -13,15 +13,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-  void _openOrderManagementScreen() {
-    Order exampleOrder = Order([], 'Preparing'); // Replace with actual order data as needed
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => OrderManagementScreen(order: exampleOrder)),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
