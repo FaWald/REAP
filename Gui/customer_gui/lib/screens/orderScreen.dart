@@ -15,6 +15,16 @@ class _OrderScreenState extends State<OrderScreen> {
   TimeOfDay? selectedTime;
   List<Meal> selectedMeals = [];
 
+  List<Meal> get menu {
+    // Return a list of Meal objects
+    // This is just a placeholder; you'll replace it with your actual logic for fetching meals
+    return [
+      Meal(name: 'Meal 1', price: 9.99),
+      Meal(name: 'Meal 2', price: 12.99),
+      // Add more Meal instances as needed
+    ];
+  }
+
   @override
   void dispose() {
     _seatController.dispose();

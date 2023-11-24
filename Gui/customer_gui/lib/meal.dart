@@ -1,19 +1,23 @@
 class Meal {
   final String name;
   final double price;
+  // Weitere Attribute gemäß Ihrer JSON-Struktur
 
-  Meal(this.name, this.price);
+  Meal({required this.name, required this.price});
+
+  factory Meal.fromJson(Map<String, dynamic> json) {
+    return Meal(
+      name: json['name'],
+      price: json['price'].toDouble(),
+      // Weitere Attribute initialisieren
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'price': price,
+      // Weitere Attribute zu JSON konvertieren
+    };
+  }
 }
-
-class Order {
-  final List<Meal> meals;
-  String status;
-
-  Order(this.meals, this.status);
-}
-
-List<Meal> menu = [
-  Meal("Spaghetti Carbonara", 8.50),
-  Meal("Margherita Pizza", 7.00),
-  Meal("Caesar Salad", 5.50),
-];

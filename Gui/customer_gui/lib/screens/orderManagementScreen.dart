@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import '../order.dart';
 import '../styles/app_theme.dart';
 import '../styles/dimensions.dart';
-import '../meal.dart';
 
 class OrderManagementScreen extends StatefulWidget {
   final Order order;
