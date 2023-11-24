@@ -23,3 +23,79 @@ if you want to use one of the functions defined in the class, you can call them 
 ## Application
 
 The Application file is the start of the program and with WebMvcConfigurer sets the CORS communications for localhost:8080
+
+Creating a restaurant
+
+Send POST HTTP request to endpoint http://localhost:8080/restaurants
+
+{
+	headers: {
+        "Content-Type": "application/json"
+    }
+    method: "GET",
+    body: {
+      name : "PetarKornDog",
+      phoneNumber : "+4369910677504",
+      emailAddress : "petarnenkov2@muster.mail",
+      address : "Schlachthofgasse",
+      restaurantType : "Mexican",
+      website : "restau1best.com",
+      delivery : true,
+    }
+}
+
+
+
+
+Creating a reservation
+
+Send GET HTTP request to endpoint http://localhost:8080/restaurants/search/findByName?name=PetarKornDog
+
+Response
+{
+  "_embedded" : {
+    "restaurants" : [ {
+      "name" : "PetarKornDog",
+      "phoneNumber" : "+4369910677504",
+      "emailAddress" : "petarnenkov2@muster.mail",
+      "address" : "Schlachthofgasse",
+      "restaurantType" : "Mexican",
+      "website" : "restau1best.com",
+      "delivery" : true,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/restaurants/1"
+        },
+        "restaurant" : {
+          "href" : "http://localhost:8080/restaurants/1"
+        },
+        "reservations" : {
+          "href" : "http://localhost:8080/restaurants/1/reservations"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/restaurants/search/findByName?name=PetarKornDog"
+    }
+  }
+}
+
+besides the table values for the reservation you will need the self href of the restaurant
+you can get that from data._embedded.restaurants[i]._links.self.href
+
+Send POST HTTP request to endpoint http://localhost:8080/reservations
+
+{
+	headers: {
+        "Content-Type": "application/json"
+    }
+    method: "POST",
+    body: {
+      name : "Petar Nenkov",
+      phoneNumber : "+4369910677504",
+      emailAddress : "customer1@gmail.com",
+      restaurant : "http://localhost:8080/restaurants/1"
+    }
+}

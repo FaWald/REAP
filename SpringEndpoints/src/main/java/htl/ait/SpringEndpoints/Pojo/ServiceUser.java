@@ -6,8 +6,8 @@ import jakarta.persistence.*;
 public class ServiceUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     private String username;
     private String password;
@@ -15,21 +15,7 @@ public class ServiceUser {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    // Constructors, getters, and setters
-
-    // Default constructor
-    public ServiceUser() {}
-
-    // Parameterized constructor
-    public ServiceUser(String username, String password, UserRole role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
-    }
-
-    // Getters and setters
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

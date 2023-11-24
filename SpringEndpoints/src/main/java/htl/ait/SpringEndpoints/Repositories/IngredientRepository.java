@@ -14,7 +14,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface IngredientRepository extends PagingAndSortingRepository<Ingredient, Long>, CrudRepository<Ingredient, Long> {
 
     @Query("select i from Ingredient i where i.id = :id")
-    List<Menu> findById(@Param("id") Integer id);
+    List<Ingredient> findById(@Param("id") Integer id);
     @Query("Select i from Ingredient i where i.name like :name")
     List<Ingredient> findByName(@Param("name") String name);
     @Query("Select i from Ingredient i where i.description like :description")

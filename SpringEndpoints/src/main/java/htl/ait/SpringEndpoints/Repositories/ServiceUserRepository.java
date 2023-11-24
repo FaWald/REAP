@@ -15,7 +15,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface ServiceUserRepository extends PagingAndSortingRepository<ServiceUser, Long>, CrudRepository<ServiceUser, Long> {
 
     @Query("select u from ServiceUser u where u.id = :id")
-    List<Menu> findById(@Param("id") Integer id);
+    List<ServiceUser> findById(@Param("id") Integer id);
     @Query("Select u from ServiceUser u where u.username like :name")
     List<ServiceUser> findByName(@Param("name") String name);
     @Query("Select u from ServiceUser u where u.password like :password")

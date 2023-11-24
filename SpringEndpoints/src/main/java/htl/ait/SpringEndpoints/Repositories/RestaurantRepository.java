@@ -15,7 +15,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface RestaurantRepository extends PagingAndSortingRepository<Restaurant, Long>, CrudRepository<Restaurant, Long> {
 
     @Query("select r from Restaurant r where r.id = :id")
-    List<Menu> findById(@Param("id") Integer id);
+    List<Restaurant> findById(@Param("id") Integer id);
     @Query("Select r from Restaurant r where r.name like :name")
     List<Restaurant> findByName(@Param("name") String name);
     @Query("Select r from Restaurant r where r.phoneNumber like :phone")

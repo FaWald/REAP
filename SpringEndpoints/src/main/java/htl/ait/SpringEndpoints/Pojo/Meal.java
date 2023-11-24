@@ -8,7 +8,7 @@ import java.util.Set;
 public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     @ManyToOne
     @JoinColumn(name = "menu_id")
     private Menu menu;
@@ -25,17 +25,9 @@ public class Meal {
     )
     private Set<Ingredient> ingredients;
 
-    public Meal() {
-        // Standardkonstruktor
-    }
+    public Meal() {}
 
-    public Meal(String name, String description, double price) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 

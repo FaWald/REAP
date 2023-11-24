@@ -8,7 +8,7 @@ import java.util.List;
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String description;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
@@ -16,13 +16,7 @@ public class Menu {
     @OneToMany(mappedBy = "menu")
     private List<Meal> meals;
 
-    public Menu() {}
-
-    public Menu(String description) {
-        this.description = description;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -30,15 +24,23 @@ public class Menu {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Restaurant getRestaurant() {
         return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public List<Meal> getMeals() {
         return meals;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setMeals(List<Meal> meals) {
+        this.meals = meals;
     }
 }

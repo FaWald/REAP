@@ -8,7 +8,7 @@ import java.util.Set;
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String name;
     private String description;
     private String allergenics;
@@ -18,13 +18,7 @@ public class Ingredient {
 
     public Ingredient() {}
 
-    public Ingredient(String name, String description, String allergenics) {
-        this.name = name;
-        this.description = description;
-        this.allergenics = allergenics;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -32,27 +26,31 @@ public class Ingredient {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getAllergenics() {
-        return allergenics;
-    }
-
-    public Set<Meal> getMeals() {
-        return meals;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public String getAllergenics() {
+        return allergenics;
+    }
+
     public void setAllergenics(String allergenics) {
         this.allergenics = allergenics;
+    }
+
+    public Set<Meal> getMeals() {
+        return meals;
+    }
+
+    public void setMeals(Set<Meal> meals) {
+        this.meals = meals;
     }
 }
