@@ -1,30 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:petars_test/Routes/PageRoutes.dart';
+import 'package:petars_test/Utils/ApiController.dart'; // Replace with the actual file name
 
-void main() => runApp(const BMICalculator());
+void main() {
+  runApp(MyApp());
+}
 
-class BMICalculator extends StatelessWidget {
-  const BMICalculator({Key? key}) : super(key: key);
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFF111328),
-        appBarTheme: const AppBarTheme(
-            backgroundColor: Color(0xFF111328)
-        ),
-        textTheme: const TextTheme(
-          bodyMedium: TextStyle(color: Colors.white),
-        ),
+      home: MainPage(),
+    );
+  }
+}
+
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  final apiController = ApiController(baseUrl: 'http://localhost:8080');
+  late String responseData = 'Loading...';
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    try {
+      final response = await apiController.sendGetRequest('/restaurants');
+      setState(() {
+        responseData = response.body;
+      });
+    } catch (error) {
+      setState(() {
+        responseData = 'Error: $error';
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('API Response Demo'),
       ),
-      initialRoute: PageRoutes.mainPage
-      /*
-      routes: {
-        PageRoutes.routeInputPage: (context) => const InputPage(),
-        PageRoutes.routeResultPage: (context) => const ResultPage(),
-      },
-      */
+      body: Center(
+        child: Text(responseData),
+      ),
     );
   }
 }
