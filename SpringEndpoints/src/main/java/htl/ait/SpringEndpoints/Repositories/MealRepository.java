@@ -11,6 +11,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+@CrossOrigin(origins = "*")
 @RepositoryRestResource(collectionResourceRel = "meals", path = "meals")
 public interface MealRepository extends PagingAndSortingRepository<Meal, Long>, CrudRepository<Meal, Long> {
 
