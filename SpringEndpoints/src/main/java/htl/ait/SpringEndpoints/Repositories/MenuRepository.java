@@ -11,6 +11,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+@CrossOrigin(origins = "*")
 @RepositoryRestResource(collectionResourceRel = "menus", path = "menus")
 public interface MenuRepository extends PagingAndSortingRepository<Menu, Long>, CrudRepository<Menu, Long> {
 
