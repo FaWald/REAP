@@ -10,6 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+@CrossOrigin(origins = "*")
 @RepositoryRestResource(collectionResourceRel = "ingredients", path = "ingredients")
 public interface IngredientRepository extends PagingAndSortingRepository<Ingredient, Long>, CrudRepository<Ingredient, Long> {
 
