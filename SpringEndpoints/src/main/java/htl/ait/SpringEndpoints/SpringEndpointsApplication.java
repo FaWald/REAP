@@ -22,7 +22,7 @@ public class SpringEndpointsApplication {
 				registry.addMapping("/**")
 						.allowedOrigins("http://localhost:8080") // Hier die Origin Ihres Clients angeben
 						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-						.allowedHeaders("Content-Type");
+						.allowedHeaders("Content-Type", "Access-Control-Allow-Origin");
 			}
 		};
 	}
