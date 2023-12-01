@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Restaurant {
   late String name;
   late String phoneNumber;
@@ -20,6 +22,20 @@ class Restaurant {
   });
 
   Restaurant.fromJson(Map<String, dynamic> json) {
+    fromJson(json);
+  }
+
+  static List<Restaurant> fromJsonList(String responseBody) {
+    final Map<String, dynamic> jsonResponse = json.decode(responseBody);
+    final List<dynamic> restaurantData = jsonResponse['_embedded']['restaurants'];
+
+    return restaurantData.map((json) {
+      var restaurant = Restaurant.fromJson(json);
+      return restaurant;
+    }).toList().cast<Restaurant>();
+  }
+
+  void fromJson(Map<String, dynamic> json) {
     name = json['name'];
     phoneNumber = json['phoneNumber'];
     emailAddress = json['emailAddress'];
@@ -28,5 +44,10 @@ class Restaurant {
     website = json['website'];
     delivery = json['delivery'];
     selfHref = json['_links']['self']['href'];
+  }
+
+  @override
+  String toString() {
+    return 'Restaurant{name: $name, phoneNumber: $phoneNumber, emailAddress: $emailAddress, address: $address, restaurantType: $restaurantType, website: $website, delivery: $delivery, selfHref: $selfHref}';
   }
 }
