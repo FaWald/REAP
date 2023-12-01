@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:owner_gui/owner_gui/screens/productListScreen.dart';
-import '../../styles/colors.dart';
-import '../product.dart';
+import '../../styles/app_theme.dart';
+import '../../styles/dimensions.dart';
+import '../Product.dart';
+import 'productListScreen.dart'; // Assuming productListScreen.dart is in the same directory
 
 class OwnerScreen extends StatefulWidget {
+  const OwnerScreen({super.key});
+
   @override
   _OwnerScreenState createState() => _OwnerScreenState();
 }
 
 class _OwnerScreenState extends State<OwnerScreen> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _priceController = TextEditingController();
-  List<Product> _products = []; // Liste für die Produkte
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _priceController = TextEditingController();
+  final List<Product> _products = []; // List for products
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Owner Gui'),
+        title: Text('Owner Gui', style: Theme.of(context).textTheme.titleLarge),
+        backgroundColor: AppTheme.theme.primaryColor,
       ),
       body: ListView.builder(
         itemCount: _products.length,
@@ -30,21 +34,21 @@ class _OwnerScreenState extends State<OwnerScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: 200.0, // Breite des ersten Buttons
-              height: 200.0, // Höhe des ersten Buttons
+              width: Dimensions.buttonWidth, // Use dimensions for button width
+              height: Dimensions.buttonHeight, // Use dimensions for button height
               child: FloatingActionButton(
                 onPressed: () {
                   _showAddItemDialog(context);
                 },
-                child: Icon(Icons.add),
-                backgroundColor: AppColors.buttonColor,
-                heroTag: null,
+                backgroundColor: Theme.of(context).primaryColor, // Use theme for button color
+                heroTag: 'addProduct',
+                child: const Icon(Icons.add),
               ),
             ),
-            SizedBox(height: 16.0), // Vertikaler Abstand zwischen den Buttons
+            const SizedBox(height: Dimensions.spaceBetweenButtons), // Use dimensions for space
             SizedBox(
-              width: 200.0, // Breite des zweiten Buttons
-              height: 200.0, // Höhe des zweiten Buttons
+              width: Dimensions.buttonWidth, // Use dimensions for button width
+              height: Dimensions.buttonHeight, // Use dimensions for button height
               child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
@@ -52,65 +56,61 @@ class _OwnerScreenState extends State<OwnerScreen> {
                     MaterialPageRoute(builder: (context) => ProductListScreen(products: _products)),
                   );
                 },
-                child: Icon(Icons.edit),
-                backgroundColor: AppColors.buttonColor,
-                heroTag: null,
+                backgroundColor: Theme.of(context).primaryColor, // Use theme for button color
+                heroTag: 'editProduct',
+                child: const Icon(Icons.edit),
               ),
             ),
           ],
         ),
       ),
-
     );
   }
 
-
-
   Widget _buildProductItem(Product product) {
     return Container(
-      height: 80.0, // Höhe der Box
-      margin: EdgeInsets.all(8.0), // Abstand zwischen den Boxen
+      height: Dimensions.productItemHeight, // Use dimensions for item height
+      margin: const EdgeInsets.all(Dimensions.padding), // Use dimensions for margin
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black), // Rand um die Box
-        borderRadius: BorderRadius.circular(8.0), // Abrundung der Ecken
+        border: Border.all(color: Theme.of(context).dividerColor), // Use theme for border color
+        borderRadius: BorderRadius.circular(Dimensions.cornerRadius), // Use dimensions for corner radius
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(Dimensions.padding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               product.name,
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
             Text(
               '${product.price} €',
-              style: TextStyle(fontSize: 18.0),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
       ),
     );
   }
-
 
   void _showAddItemDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Neues Element hinzufügen'),
+          title: Text('Neues Element hinzufügen', style: Theme.of(context).textTheme.titleLarge),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: _nameController,
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: Dimensions.padding),
               TextField(
                 controller: _priceController,
-                decoration: InputDecoration(labelText: 'Preis'),
+                decoration: const InputDecoration(labelText: 'Preis'),
                 keyboardType: TextInputType.number,
               ),
             ],
@@ -120,18 +120,24 @@ class _OwnerScreenState extends State<OwnerScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Abbrechen'),
+              child: Text('Abbrechen', style: Theme.of(context).textTheme.bodyLarge),
             ),
             ElevatedButton(
               onPressed: () {
                 String name = _nameController.text;
-                double price = double.parse(_priceController.text);
-                Product product = Product(name, price);
-                _products.add(product); // Produkt zur Liste hinzufügen
-                print('Produkt hinzugefügt: Name: $name, Preis: $price');
+                double price = double.tryParse(_priceController.text) ?? 0.0;
+                if(name.isNotEmpty && price > 0) {
+                  Product product = Product(name, price);
+                  setState(() {
+                    _products.add(product); // Add product to the list
+                  });
+                }
                 Navigator.of(context).pop();
               },
-              child: Text('Bestätigen'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).primaryColor, // Use theme for button color
+              ),
+              child: Text('Bestätigen', style: Theme.of(context).textTheme.bodyLarge),
             ),
           ],
         );

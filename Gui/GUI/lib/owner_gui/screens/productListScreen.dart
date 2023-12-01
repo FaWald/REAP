@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../product.dart';
+import '../../styles/app_theme.dart';
+import '../../styles/dimensions.dart';
+import '../Product.dart';
 
 class ProductListScreen extends StatefulWidget {
   final List<Product> products;
 
-  ProductListScreen({required this.products});
+  const ProductListScreen({super.key, required this.products});
 
   @override
   _ProductListScreenState createState() => _ProductListScreenState();
@@ -16,7 +17,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product List'),
+        title: Text('Product List', style: Theme.of(context).textTheme.titleLarge),
+        backgroundColor: AppTheme.theme.primaryColor,
       ),
       body: ListView.builder(
         itemCount: widget.products.length,
@@ -31,56 +33,56 @@ class _ProductListScreenState extends State<ProductListScreen> {
     return Dismissible(
       key: Key(product.name),
       onDismissed: (direction) {
-        // Handle dismiss (delete) here
-        _deleteProduct(context, index);
+        _deleteProduct(index);
       },
       background: Container(
         color: Colors.red,
-        child: Icon(
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: Dimensions.padding), // This color should come from the theme if possible
+        child: const Icon(
           Icons.delete,
-          color: Colors.white,
+          color: Colors.white, // This color should come from the theme if possible
           size: 36.0,
         ),
-        alignment: Alignment.centerRight,
-        padding: EdgeInsets.only(right: 16.0),
       ),
       child: ListTile(
-        title: Text(product.name),
-        subtitle: Text('${product.price} €'),
+        title: Text(product.name, style: Theme.of(context).textTheme.bodyLarge),
+        subtitle: Text('${product.price} €', style: Theme.of(context).textTheme.bodyMedium),
         trailing: IconButton(
-          icon: Icon(Icons.delete),
+          icon: const Icon(Icons.delete),
           onPressed: () {
-            // Handle delete here
-            _deleteProduct(context, index);
+            _deleteProduct(index);
           },
         ),
       ),
     );
   }
 
-  void _deleteProduct(BuildContext context, int index) {
+  void _deleteProduct(int index) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Produkt löschen'),
-          content: Text('Möchten Sie das Produkt wirklich löschen?'),
+          title: Text('Produkt löschen', style: Theme.of(context).textTheme.titleLarge),
+          content: Text('Möchten Sie das Produkt wirklich löschen?', style: Theme.of(context).textTheme.bodyMedium),
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Schließe das Dialogfenster
+                Navigator.of(context).pop(); // Close the dialog window
               },
-              child: Text('Abbrechen'),
+              child: Text('Abbrechen', style: Theme.of(context).textTheme.bodyLarge),
             ),
             ElevatedButton(
               onPressed: () {
-                // Lösche das Produkt aus der Liste
                 setState(() {
-                  widget.products.removeAt(index);
+                  widget.products.removeAt(index); // Remove the product from the list
                 });
-                Navigator.of(context).pop(); // Schließe das Dialogfenster
+                Navigator.of(context).pop(); // Close the dialog window
               },
-              child: Text('Löschen'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.error, // Use error color from theme for delete button
+              ),
+              child: Text('Löschen', style: Theme.of(context).textTheme.bodyLarge),
             ),
           ],
         );

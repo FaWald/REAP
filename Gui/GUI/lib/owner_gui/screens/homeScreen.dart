@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import '../../styles/colors.dart';
+import '../../styles/app_theme.dart';
+import '../../styles/dimensions.dart';
 import '../../waiter_gui/waiter_gui.dart';
-import 'ownerScreen.dart';
+import 'ownerScreen.dart'; // Assuming ownerScreen.dart is in the same directory
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        title: Text('Owner Gui'),
+        title: Text('Owner Gui', style: Theme.of(context).textTheme.titleLarge),
+        backgroundColor: AppTheme.theme.primaryColor,
       ),
       body: Center(
         child: Column(
@@ -22,22 +25,21 @@ class HomeScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => OwnerScreen()),
                 );
               },
-              child: Padding(
-                padding: const EdgeInsets.all(26.0),
-                child: Text(
-                  'Verwaltungssicht',
-                  style: TextStyle(fontSize: 18),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Theme.of(context).textTheme.labelLarge?.color, backgroundColor: Theme.of(context).primaryColor, // Use theme for text color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(Dimensions.cornerRadius), // Use dimensions for corner radius
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                primary: AppColors.buttonColor, // Background color
-                onPrimary: AppColors.textColor, // Text color
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+              child: Padding(
+                padding: const EdgeInsets.all(Dimensions.padding),
+                child: Text(
+                  'Verwaltungssicht',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: Dimensions.buttonFontSize),
                 ),
               ),
             ),
-            SizedBox(height: 16), // Spacing between buttons
+            const SizedBox(height: Dimensions.spaceBetweenButtons), // Use dimensions for space
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -45,18 +47,17 @@ class HomeScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => WaiterPage()),
                 );
               },
-              child: Padding(
-                padding: const EdgeInsets.all(26.0),
-                child: Text(
-                  'Beobachtungssicht',
-                  style: TextStyle(fontSize: 18),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Theme.of(context).textTheme.labelLarge?.color, backgroundColor: Theme.of(context).primaryColor, // Use theme for text color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(Dimensions.cornerRadius), // Use dimensions for corner radius
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                primary: AppColors.buttonColor, // Background color
-                onPrimary: AppColors.textColor, // Text color
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+              child: Padding(
+                padding: const EdgeInsets.all(Dimensions.padding),
+                child: Text(
+                  'Beobachtungssicht',
+                  style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: Dimensions.buttonFontSize),
                 ),
               ),
             ),

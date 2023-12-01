@@ -5,4 +5,6 @@ class Dimensions {
   static const double buttonFontSize = 20.0;
   static const double spaceBetweenButtons = 30.0;
   static const double textFormFieldHeight = 60.0;
+  static const double productItemHeight = 80.0;
+  static const double cornerRadius = 8.0;
 }
