@@ -1,56 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:petars_test/Utils/ApiController.dart'; // Replace with the actual file name
+import 'package:petars_test/Pages/MainPage.dart';
+import 'package:petars_test/Pages/SignUpPage.dart';
+import 'package:petars_test/Utils/RoutesManager.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import 'Pages/LoginPage.dart';
+
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MainPage(),
-    );
-  }
-}
-
-class MainPage extends StatefulWidget {
-  @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  final apiController = ApiController(baseUrl: 'http://localhost:8080');
-  late String responseData = 'Loading...';
-
-  @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-
-  Future<void> fetchData() async {
-    try {
-      final response = await apiController.sendGetRequest('/restaurants');
-      setState(() {
-        responseData = response.body;
-      });
-    } catch (error) {
-      setState(() {
-        responseData = 'Error: $error';
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('API Response Demo'),
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFF111328),
+        appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xFF111328)
+        ),
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(color: Colors.white),
+        ),
       ),
-      body: Center(
-        child: Text(responseData),
-      ),
+      initialRoute: PageRoutes.loginPage,
+      routes: {
+        PageRoutes.loginPage: (context) => LoginPage(),
+        PageRoutes.signupPage: (context) => SignupPage(),
+        PageRoutes.mainPage: (context) => MainPage(),
+      },
     );
   }
 }

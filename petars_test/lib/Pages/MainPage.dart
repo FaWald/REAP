@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:petars_test/Utils/ApiController.dart'; // Replace with the actual file name
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MainPage(),
-    );
-  }
-}
-
 class MainPage extends StatefulWidget {
+  static const String routeName = '/main';
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -31,7 +19,7 @@ class _MainPageState extends State<MainPage> {
 
   Future<void> fetchData() async {
     try {
-      final response = await apiController.sendGetRequest('/your-api-endpoint');
+      final response = await apiController.sendGetRequest('/ingredients');
       setState(() {
         responseData = response.body;
       });
