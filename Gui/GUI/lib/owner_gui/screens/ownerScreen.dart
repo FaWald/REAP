@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../styles/app_theme.dart';
 import '../../styles/dimensions.dart';
-import '../Product.dart';
+import '../product.dart';
 import 'productListScreen.dart'; // Assuming productListScreen.dart is in the same directory
 
 class OwnerScreen extends StatefulWidget {
