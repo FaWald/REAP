@@ -1,0 +1,24 @@
+2023-12-15 10:47:45 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Datenumwandlungsfehler beim Umwandeln von "'8,30' (MEAL: ""PRICE"" FLOAT(53) NOT NULL)"
+Data conversion error converting "'8,30' (MEAL: ""PRICE"" FLOAT(53) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."MEAL"("PRICE","ID","MENU_ID","DESCRIPTION","NAME")VALUES(?,?,?,?,?) [22018-212]
+2023-12-15 10:47:45 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Datenumwandlungsfehler beim Umwandeln von "'8,30' (MEAL: ""PRICE"" FLOAT(53) NOT NULL)"
+Data conversion error converting "'8,30' (MEAL: ""PRICE"" FLOAT(53) NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."MEAL"("PRICE","ID","MENU_ID","DESCRIPTION","NAME")VALUES(?,?,?,?,?) [22018-212]
+2023-12-15 10:48:07 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Datenumwandlungsfehler beim Umwandeln von "'' (MEAL: ""MENU_ID"" BIGINT)"
+Data conversion error converting "'' (MEAL: ""MENU_ID"" BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."MEAL"("PRICE","ID","MENU_ID","DESCRIPTION","NAME")VALUES(?,?,?,?,?) [22018-212]
+2023-12-15 10:48:07 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Datenumwandlungsfehler beim Umwandeln von "'' (MEAL: ""MENU_ID"" BIGINT)"
+Data conversion error converting "'' (MEAL: ""MENU_ID"" BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."MEAL"("PRICE","ID","MENU_ID","DESCRIPTION","NAME")VALUES(?,?,?,?,?) [22018-212]
+2023-12-15 10:48:47 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "[*]MENU_ID"; erwartet "MERGE"
+Syntax error in SQL statement "[*]MENU_ID"; expected "MERGE"; SQL statement:
+MENU_ID [42001-212]
+2023-12-15 10:49:10 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "SELECT * [*]FROMEAL M MENU"
+Syntax error in SQL statement "SELECT * [*]FROMEAL M MENU"; SQL statement:
+SELECT * FROMEAL M MENU [42000-212]
