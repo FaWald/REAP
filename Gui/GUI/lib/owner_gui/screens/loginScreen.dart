@@ -3,7 +3,13 @@ import '../../styles/app_theme.dart';
 import '../../styles/dimensions.dart';
 import 'homeScreen.dart'; // Assuming homeScreen.dart is in the same directory
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  String? selectedRestaurant;
   final List<String> restaurantList = ['Restaurant 1', 'Restaurant 2', 'Restaurant 3']; // Add restaurant names here
 
   @override
@@ -18,18 +24,23 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             DropdownButton<String>(
+              value: selectedRestaurant,
               items: restaurantList.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value, style: Theme.of(context).textTheme.bodyLarge),
                 );
               }).toList(),
-              onChanged: (String? selectedRestaurant) {
-                // Implement logic to save selected restaurant
+              onChanged: (String? newSelectedRestaurant) {
+                setState(() {
+                  selectedRestaurant = newSelectedRestaurant;
+                });
               },
               hint: Text('Select a Restaurant', style: Theme.of(context).textTheme.bodyLarge),
             ),
-            const SizedBox(height: Dimensions.padding), // Use dimensions for spacing
+            if (selectedRestaurant != null) ...[
+            ],
+            const SizedBox(height: Dimensions.padding),
             ElevatedButton(
               onPressed: () {
                 // Implement logic to forward the selected restaurant
@@ -39,7 +50,8 @@ class LoginScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                foregroundColor: Theme.of(context).textTheme.labelLarge?.color, backgroundColor: Theme.of(context).primaryColor, // Use theme for text color
+                foregroundColor: Theme.of(context).textTheme.labelLarge?.color,
+                backgroundColor: Theme.of(context).primaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(Dimensions.padding),
                 ),
