@@ -14,16 +14,7 @@ public class Meal {
     private Menu menu;
 
     private String name;
-    private String description;
     private double price;
-
-    @ManyToMany
-    @JoinTable(
-            name = "meal_ingredient",
-            joinColumns = @JoinColumn(name = "meal_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
-    )
-    private Set<Ingredient> ingredients;
 
     public Meal() {}
 
@@ -47,27 +38,11 @@ public class Meal {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(Set<Ingredient> ingredients) {
-        this.ingredients = ingredients;
     }
 }

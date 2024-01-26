@@ -2,7 +2,6 @@ package htl.ait.SpringEndpoints.Repositories;
 
 import java.util.List;
 
-import htl.ait.SpringEndpoints.Pojo.Ingredient;
 import htl.ait.SpringEndpoints.Pojo.Meal;
 import htl.ait.SpringEndpoints.Pojo.Menu;
 import org.springframework.data.jpa.repository.Query;
@@ -20,13 +19,9 @@ public interface MealRepository extends PagingAndSortingRepository<Meal, Long>, 
     List<Meal> findById(@Param("id") Integer id);
     @Query("Select m from Meal m where m.name like :name")
     List<Meal> findByName(@Param("name") String name);
-    @Query("Select m from Meal m where m.description like :description")
-    List<Meal> findByDescription(@Param("description") String description);
     @Query("Select m from Meal m where m.menu = :menu")
     List<Meal> findByMenu(@Param("menu") Menu menu);
     @Query("Select m from Meal m where m.price = :price")
     List<Meal> findByPrice(@Param("price") Integer price);
-    @Query("Select m from Meal m where m.ingredients = :ingredients")
-    List<Meal> findByIngredient(@Param("ingredient") List<Ingredient> ingredients);
 
 }
