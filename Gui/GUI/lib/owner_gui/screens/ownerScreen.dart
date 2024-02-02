@@ -5,7 +5,7 @@ import '../product.dart';
 import 'productListScreen.dart'; // Assuming productListScreen.dart is in the same directory
 
 class OwnerScreen extends StatefulWidget {
-  const OwnerScreen({super.key});
+  const OwnerScreen({Key? key}) : super(key: key);
 
   @override
   _OwnerScreenState createState() => _OwnerScreenState();
@@ -23,32 +23,27 @@ class _OwnerScreenState extends State<OwnerScreen> {
         title: Text('Owner Gui', style: Theme.of(context).textTheme.titleLarge),
         backgroundColor: AppTheme.theme.primaryColor,
       ),
-      body: ListView.builder(
-        itemCount: _products.length,
-        itemBuilder: (BuildContext context, int index) {
-          return _buildProductItem(_products[index]);
-        },
-      ),
+      body: SizedBox(), // Empty container to ignore any message
       floatingActionButton: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: Dimensions.buttonWidth, // Use dimensions for button width
-              height: Dimensions.buttonHeight, // Use dimensions for button height
+              width: Dimensions.buttonWidth,
+              height: Dimensions.buttonHeight,
               child: FloatingActionButton(
                 onPressed: () {
                   _showAddItemDialog(context);
                 },
-                backgroundColor: Theme.of(context).primaryColor, // Use theme for button color
+                backgroundColor: Theme.of(context).primaryColor,
                 heroTag: 'addProduct',
                 child: const Icon(Icons.add),
               ),
             ),
-            const SizedBox(height: Dimensions.spaceBetweenButtons), // Use dimensions for space
+            const SizedBox(height: Dimensions.spaceBetweenButtons),
             SizedBox(
-              width: Dimensions.buttonWidth, // Use dimensions for button width
-              height: Dimensions.buttonHeight, // Use dimensions for button height
+              width: Dimensions.buttonWidth,
+              height: Dimensions.buttonHeight,
               child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
@@ -56,37 +51,10 @@ class _OwnerScreenState extends State<OwnerScreen> {
                     MaterialPageRoute(builder: (context) => ProductListScreen(products: _products)),
                   );
                 },
-                backgroundColor: Theme.of(context).primaryColor, // Use theme for button color
+                backgroundColor: Theme.of(context).primaryColor,
                 heroTag: 'editProduct',
                 child: const Icon(Icons.edit),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildProductItem(Product product) {
-    return Container(
-      height: Dimensions.productItemHeight, // Use dimensions for item height
-      margin: const EdgeInsets.all(Dimensions.padding), // Use dimensions for margin
-      decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).dividerColor), // Use theme for border color
-        borderRadius: BorderRadius.circular(Dimensions.cornerRadius), // Use dimensions for corner radius
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(Dimensions.padding),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              product.name,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            Text(
-              '${product.price} €',
-              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
@@ -126,16 +94,16 @@ class _OwnerScreenState extends State<OwnerScreen> {
               onPressed: () {
                 String name = _nameController.text;
                 double price = double.tryParse(_priceController.text) ?? 0.0;
-                if(name.isNotEmpty && price > 0) {
+                if (name.isNotEmpty && price > 0) {
                   Product product = Product(name, price);
                   setState(() {
-                    _products.add(product); // Add product to the list
+                    _products.add(product);
                   });
                 }
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).primaryColor, // Use theme for button color
+                backgroundColor: Theme.of(context).primaryColor,
               ),
               child: Text('Bestätigen', style: Theme.of(context).textTheme.bodyLarge),
             ),

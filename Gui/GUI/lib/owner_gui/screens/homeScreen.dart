@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../styles/app_theme.dart';
 import '../../styles/dimensions.dart';
 import '../../waiter_gui/waiter_gui.dart';
-import 'ownerScreen.dart'; // Assuming ownerScreen.dart is in the same directory
+import 'ownerScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
