@@ -12,8 +12,7 @@ class MyApp extends StatelessWidget {
 
   void exampleAPIController() {
     ApiController controller = ApiController(baseUrl: "http://localhost:8080");
-    Response json = controller.sendGetRequest("/restaurants") as Response;
-    List<Restaurant> restaurants = Restaurant.fromJsonList(json.body);
+    List<Restaurant> restaurants = Restaurant.fromJsonList((controller.sendGetRequest("/restaurants") as Response).body);
   }
   
   @override
