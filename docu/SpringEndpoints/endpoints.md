@@ -196,3 +196,214 @@ ingredients: "http://localhost:8080/meals/1"
 }
 }
  
+
+# Restaurant JSON Response
+Endpoint: /restaurants
+{
+  "_embedded" : {
+    "restaurants" : [ {
+      "name" : "TomatoJoePizza",
+      "phoneNumber" : "+43689245879",
+      "emailAddress" : "tomato_joe@austrian.at",
+      "address" : "SonnenStraße 245",
+      "restaurantType" : "Pizzaria",
+      "website" : "tomatoJoesPizza.com",
+      "delivery" : true,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/restaurants/1"
+        },
+        "restaurant" : {
+          "href" : "http://localhost:8080/restaurants/1"
+        },
+        "reservations" : {
+          "href" : "http://localhost:8080/restaurants/1/reservations"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/restaurants?page=0&size=20"
+    },
+    "profile" : {
+      "href" : "http://localhost:8080/profile/restaurants"
+    },
+    "search" : {
+      "href" : "http://localhost:8080/restaurants/search"
+    }
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 1,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
+# Menu JSON Response
+Endpoint: /menus
+{
+  "_embedded" : {
+    "menus" : [ {
+      "description" : "Pizza Menu",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/menus/1"
+        },
+        "menu" : {
+          "href" : "http://localhost:8080/menus/1"
+        },
+        "restaurant" : {
+          "href" : "http://localhost:8080/menus/1/restaurant"
+        },
+        "meals" : {
+          "href" : "http://localhost:8080/menus/1/meals"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/menus?page=0&size=20"
+    },
+    "profile" : {
+      "href" : "http://localhost:8080/profile/menus"
+    },
+    "search" : {
+      "href" : "http://localhost:8080/menus/search"
+    }
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 1,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
+# Meal JSON Response
+Endpoint: /meals
+{
+  "_embedded" : {
+    "meals" : [ {
+      "name" : "Burger",
+      "price" : 4.0,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/meals/1"
+        },
+        "meal" : {
+          "href" : "http://localhost:8080/meals/1"
+        },
+        "menu" : {
+          "href" : "http://localhost:8080/meals/1/menu"
+        }
+      }
+    }, {
+      "name" : "Pommes",
+      "price" : 2.0,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/meals/2"
+        },
+        "meal" : {
+          "href" : "http://localhost:8080/meals/2"
+        },
+        "menu" : {
+          "href" : "http://localhost:8080/meals/2/menu"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/meals?page=0&size=20"
+    },
+    "profile" : {
+      "href" : "http://localhost:8080/profile/meals"
+    },
+    "search" : {
+      "href" : "http://localhost:8080/meals/search"
+    }
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 2,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
+# Reservation JSON Response
+Endpoint: /reservations
+{
+  "_embedded" : {
+    "reservations" : [ {
+      "name" : "Tomas",
+      "phoneNumber" : "+45678921",
+      "emailAddress" : "tomas@htm.com",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/reservations/1"
+        },
+        "reservation" : {
+          "href" : "http://localhost:8080/reservations/1"
+        },
+        "restaurant" : {
+          "href" : "http://localhost:8080/reservations/1/restaurant"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/reservations?page=0&size=20"
+    },
+    "profile" : {
+      "href" : "http://localhost:8080/profile/reservations"
+    },
+    "search" : {
+      "href" : "http://localhost:8080/reservations/search"
+    }
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 1,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
+# Service_users JSON Response
+Endpoint: /users
+{
+  "_embedded" : {
+    "users" : [ {
+      "username" : "Admin",
+      "password" : "123456",
+      "role" : "ADMIN",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/users/1"
+        },
+        "serviceUser" : {
+          "href" : "http://localhost:8080/users/1"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/users?page=0&size=20"
+    },
+    "profile" : {
+      "href" : "http://localhost:8080/profile/users"
+    },
+    "search" : {
+      "href" : "http://localhost:8080/users/search"
+    }
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 1,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
